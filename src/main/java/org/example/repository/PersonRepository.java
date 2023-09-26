@@ -53,7 +53,7 @@ public class PersonRepository {
             id = Integer.valueOf(people.get(people.size() - 1).getPersonId());
         }
         person.setPersonId(String.valueOf(++id));
-        if(isPeselExist(type,person.getPesel())){
+        if (isPeselExist(type, person.getPesel())) {
             throw new IllegalArgumentException("Person with this PESEL number already exists");
         }
         people.add(person);
@@ -81,6 +81,7 @@ public class PersonRepository {
         }
         throw new IllegalArgumentException("Person does not exist");
     }
+
     public boolean isPeselExist(Type type, String pesel) throws JAXBException {
         boolean result = false;
         List<Person> people = load(type);
@@ -94,7 +95,7 @@ public class PersonRepository {
 
     public void modify(Type type, Person person) throws JAXBException {
         List<Person> people = load(type);
-        if(isPeselExist(type,person.getPesel())){
+        if (isPeselExist(type, person.getPesel())) {
             throw new IllegalArgumentException("Person with this PESEL number already exists");
         }
         for (int i = 0; i < people.size(); i++) {
@@ -107,7 +108,6 @@ public class PersonRepository {
 
     public boolean remove(Type type, String id) throws JAXBException {
         File dir = new File("src/main/resources/" + type.toString());
-        boolean isDeleted = false;
         List<Person> people = load(type);
         for (Person person : people) {
             if (person.getPersonId().equals(id)) {
