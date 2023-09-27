@@ -112,10 +112,12 @@ public class PersonRepository {
         for (Person person : people) {
             if (person.getPersonId().equals(id)) {
                 File file = new File(dir, person.getPersonId() + ".xml");
-                people.remove(person);
-                file.delete();
-                save(people, type);
-                return true;
+                if(file.exists()) {
+                    people.remove(person);
+                    file.delete();
+                    save(people, type);
+                    return true;
+                }
             }
         }
 
