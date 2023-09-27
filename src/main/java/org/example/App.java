@@ -3,21 +3,14 @@ package org.example;
 import org.example.entity.Person;
 import org.example.service.PersonService;
 
-import javax.xml.bind.JAXBException;
 import java.util.Scanner;
 
 public class App {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        PersonService personService = null;
-        try {
-            personService = new PersonService();
-        } catch (JAXBException e) {
-            throw new RuntimeException(e);
-        }
+        PersonService personService = new PersonService();
         Person person = null;
-
 
         boolean exit = false;
         while (!exit) {
